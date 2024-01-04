@@ -3,6 +3,7 @@ package Practice;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
@@ -146,6 +147,30 @@ public class SeleniumActions extends GenericTest{
 
 
         actions.moveToElement(sourceElementDesktop).moveToElement(destinationElementMac).click().perform();
+        Thread.sleep(3000);
+        System.out.println("Element clicked successfully");
+        Thread.sleep(3000);
+        driver.quit();
+    }
+
+    @Test(priority = 8)
+    public void verifyActionVsActionsTest() throws InterruptedException {
+        /*
+        Actions is class in selenium
+        Action is just an action - when we perform build operation from that operation we got the return type as "Action"
+         */
+
+        GenericTest genericTest = new GenericTest();
+        genericTest.launchApplication("https://demo.opencart.com/",10);
+
+        Actions actions = new Actions(driver);
+
+        WebElement sourceElementDesktop = driver.findElement(By.xpath("//ul[@class=\"nav navbar-nav\"]//li//a[text()=\"Desktops\"]"));
+        WebElement destinationElementMac = driver.findElement(By.xpath("//ul[@class=\"list-unstyled\"]//li//a[text()=\"Mac (1)\"]"));
+
+        //Action is just an action - when we perform build operation from that operation we got the return type as "Action"
+        Action clicked = actions.moveToElement(sourceElementDesktop).moveToElement(destinationElementMac).click().build();
+        clicked.perform();
         Thread.sleep(3000);
         System.out.println("Element clicked successfully");
         Thread.sleep(3000);
