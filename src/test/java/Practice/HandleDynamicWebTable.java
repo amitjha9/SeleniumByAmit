@@ -179,7 +179,7 @@ public class HandleDynamicWebTable extends GenericTest{
                 js.executeScript("window.scrollTo(0,0)");
                 js.executeScript("window.scrollTo(0,800)");
                 Thread.sleep(4000);
-                //Clicking on next element
+                //Clicking on next page
                 String nextIndex = Integer.toString(i+1);
                 WebElement nextPage = driver.findElement(By.xpath("//ul[@class=\"pagination\"]//li//a[text()="+nextIndex+"]"));
                 nextPage.click();
